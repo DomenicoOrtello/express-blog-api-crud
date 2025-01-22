@@ -1,5 +1,5 @@
 {
-  "name": "express-blog-routing",
+  "name": "express-blog-api-crud",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DomenicoOrtello/express-blog-routing.git"
+    "url": "git+https://github.com/DomenicoOrtello/express-blog-api-crud.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DomenicoOrtello/express-blog-routing/issues"
+    "url": "https://github.com/DomenicoOrtello/express-blog-api-crud/issues"
   },
-  "homepage": "https://github.com/DomenicoOrtello/express-blog-routing#readme",
+  "homepage": "https://github.com/DomenicoOrtello/express-blog-api-crud#readme",
   "description": "",
   "dependencies": {
     "express": "^4.21.2"
