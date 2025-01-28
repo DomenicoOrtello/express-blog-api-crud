@@ -25,7 +25,7 @@ const show = function (req, res,) {
     if (!post){
        res.sendStatus(404)
     }   
-    res.json(`Dettagli di un post ${req.params.id}`);
+    res.json(post);
 }
 
 // CREATE
