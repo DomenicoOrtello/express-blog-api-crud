@@ -1,5 +1,6 @@
 // IMPORTO L'ARRAY DEI POST
-const postsData = require("../data/allPosts")
+const postsData = require("../data/allPosts");
+const { Router } = require("express");
 
 // INDEX
 const index = function (req, res) {
