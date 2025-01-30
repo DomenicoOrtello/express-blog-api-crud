@@ -3,7 +3,7 @@ const postsData = require("../data/allPosts");
 const { Router } = require("express");
 
 // INDEX
-const index = function (req, res) {
+function index (req, res) {
     let postsFiltered = postsData
     const { tag } = req.query
     if (tag) {
@@ -15,42 +15,73 @@ const index = function (req, res) {
 };
 
 // SHOW
-const show = function (req, res,) {
+function show (req, res,) {
     const post = postsData.find((elm) => elm.id == req.params.id)
-
     if (!post){
-       res.sendStatus(404)
-    } 
-    res.json(post);
+           res.sendStatus(404)
+        } 
+        res.json(post);
 }
 
 // STORE
-const store = function (req, res) {
-    res.json(`Creazione nuovo post`);
+function store (req, res) {
+    const newId = postsData[postsData.length - 1].id + 1;
+
+    const newPizza = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags
+}
+
+    postsData.push(newPizza);
+    res.status(201)
+    res.json(newPizza);
 }
 
 // UPDATE
-const update = function (req, res) {
+function update (req, res) {
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
-       res.sendStatus(404)
+        res.status(404)
+        res.json("ID inesistente")
     } 
-    res.json(`Modifica integrale del post ${req.params.id} `);
+    post.title = req.body.title
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+    res.json(post)
 }
 
 // MODIFY
-const modify = function (req, res) {
+function modify (req, res) {
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
        res.sendStatus(404)
     } 
-    res.json(`Modifica parziale del post ${req.params.id} `);
+
+
+    if(req.body.title){
+        post.title = req.body.title
+    }
+    if(req.body.content){
+        post.content = req.body.content
+    }
+    if(req.body.image){
+        post.image = req.body.image
+    }
+    if(req.body.tag){
+        post.tags = req.body.tag
+    }
+
+    res.json(post)
 }
 
 // DESTROY
-const destroy = function (req, res) {
+function destroy (req, res) {
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
@@ -60,5 +91,3 @@ const destroy = function (req, res) {
     console.log(postsData)
     res.sendStatus(204)
 }
-
-module.exports = {index, show, store, update, modify, destroy}

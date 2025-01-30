@@ -10,6 +10,9 @@ const controller = require("../controllers/postsController")
 // ISTRUISCO I MIDDLEWARE
 router.use('/:id', middleware.middlewareErrorString)
 
+// ISTRUISCO LA LETTURA DEL BODY_PARSER
+router.use(express.json());
+
 // index
 router.get('/', controller.index);
 
@@ -23,7 +26,7 @@ router.post('/', controller.store);
 router.put('/:id', controller.update);
 
 // modify
-router.patch('/:id', controller.update);
+router.patch('/:id', controller.modify);
 
 // destroy
 router.delete('/:id', controller.destroy);
