@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-// Importo funzioni controller
-const controller = require("../controllers/postsControllers");
 
-// IMPORTANZIONE FUNZIONI CONTROLLER
+// IMPORTO FUNZIONI CONTROLLER
 const controller = require("../controllers/postsController")
+
+// IMPORTO I MIDDLEWARE
+const middleware = require("../middleware/validatorString")
 
 // ISTRUISCO I MIDDLEWARE
 router.use('/:id', middleware.middlewareErrorString)
@@ -13,10 +14,10 @@ router.use('/:id', middleware.middlewareErrorString)
 // ISTRUISCO LA LETTURA DEL BODY_PARSER
 router.use(express.json());
 
-// index
+// Index
 router.get('/', controller.index);
 
-// show
+// Show
 router.get('/:id', controller.show);
 
 // Store
@@ -25,8 +26,8 @@ router.post('/', controller.store);
 // Update
 router.put('/:id', controller.update);
 
-// modify
+// Modify
 router.patch('/:id', controller.modify);
 
-// destroy
+// Destroy
 router.delete('/:id', controller.destroy);
