@@ -16,29 +16,21 @@ const index = function (req, res) {
 
 // SHOW
 const show = function (req, res,) {
-    if(isNaN(req.params.id)){
-        return res.sendStatus(400)
-    }
-
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
        res.sendStatus(404)
-    }   
+    } 
     res.json(post);
 }
 
-// CREATE
-const create = function (req, res) {
+// STORE
+const store = function (req, res) {
     res.json(`Creazione nuovo post`);
 }
 
 // UPDATE
 const update = function (req, res) {
-    if(isNaN(req.params.id)){
-        return res.sendStatus(400)
-    }
-
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
@@ -49,10 +41,6 @@ const update = function (req, res) {
 
 // MODIFY
 const modify = function (req, res) {
-    if(isNaN(req.params.id)){
-        return res.sendStatus(400)
-    }
-
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
@@ -63,10 +51,6 @@ const modify = function (req, res) {
 
 // DESTROY
 const destroy = function (req, res) {
-    if(isNaN(req.params.id)){
-        return res.sendStatus(400)
-    }
-
     const post = postsData.find((elm) => elm.id == req.params.id)
 
     if (!post){
@@ -76,3 +60,5 @@ const destroy = function (req, res) {
     console.log(postsData)
     res.sendStatus(204)
 }
+
+module.exports = {index, show, store, update, modify, destroy}
