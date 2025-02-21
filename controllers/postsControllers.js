@@ -80,3 +80,5 @@ function destroy (req, res) {
     console.log(postsData)
     res.sendStatus(204)
 }
+
+module.exports = { index, store, show, update, modify, destroy }

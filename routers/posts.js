@@ -1,33 +1,36 @@
 const express = require('express');
 const router = express.Router();
 
-
 // IMPORTO FUNZIONI CONTROLLER
-const controller = require("../controllers/postsController")
+const controller = require("../controllers/postsControllers");
 
-// IMPORTO I MIDDLEWARE
-const middleware = require("../middleware/validatorString")
+// IMPORTO IL MIDDLEWARE (destrutturando l'oggetto esportato)
+const { middlewareErrorString } = require("../middleware/validatorString");
 
-// ISTRUISCO I MIDDLEWARE
-router.use('/:id', middleware.middlewareErrorString)
+// APPLICO IL MIDDLEWARE SUL PARAMETRO :id
+router.use('/:id', middlewareErrorString);
 
-// ISTRUISCO LA LETTURA DEL BODY_PARSER
+// PARSING DEL BODY (JSON)
 router.use(express.json());
 
-// Index
+// ROTTE
+
+// Index: restituisce tutti i post, eventualmente filtrati per tag
 router.get('/', controller.index);
 
-// Show
+// Show: visualizza un singolo post in base all'id
 router.get('/:id', controller.show);
 
-// Store
+// Store: crea un nuovo post
 router.post('/', controller.store);
 
-// Update
+// Update: aggiorna completamente un post esistente
 router.put('/:id', controller.update);
 
-// Modify
+// Modify: aggiorna parzialmente un post esistente
 router.patch('/:id', controller.modify);
 
-// Destroy
+// Destroy: elimina un post
 router.delete('/:id', controller.destroy);
+
+module.exports = router;
