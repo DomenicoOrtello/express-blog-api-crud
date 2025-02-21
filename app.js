@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 app.get('/bacheca', (req, res) => {
     res.json()
   })
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.use(validatorFound)
 app.use(validatorError)
 app.listen(port, () => {
